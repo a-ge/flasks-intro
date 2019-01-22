@@ -18,7 +18,14 @@ AWESOMENESS = [
 def start_here():
     """Home page."""
 
-    return "<!doctype html><html>Hi! This is the home page.</html>"
+    return """
+    <!doctype html>
+    <html>
+        <body>
+            Hi! This is the home page.
+            <a href="/hello">Link Text</a>
+        </body>
+    </html>"""
 
 
 @app.route("/hello")
@@ -35,6 +42,25 @@ def say_hello():
         <h1>Hi There!</h1>
         <form action="/greet">
           What's your name? <input type="text" name="person">
+          Select a Compliment:
+            <select name = "compliment">
+                <option value = "awesome">Awesome</option>
+                <option value = "terrific">Terrific</option>
+                <option value = "fantastic">Fantastic</option>
+                <option value = "neato">Neato</option>
+                <option value = "fantabulous">Fantabulous</option>
+                <option value = "terrific">Terrific</option>
+                <option value = "fantastic">Fantastic</option>
+                <option value = "wowza">Wowza</option>
+                <option value = "oh-so-not-meh">Oh-so-not-meh</option>
+                <option value = "brilliant">Brilliant</option>
+                <option value = "ducky">Ducky</option>
+                <option value = "coolio">Coolio</option>
+                <option value = "incredible">Incredible</option>
+                <option value = "wonderful">Wonderful</option>
+                <option value = "smashing">Smashing</option>
+                <option value = "lovely">Lovely</option>
+            </select>
           <input type="submit" value="Submit">
         </form>
       </body>
@@ -48,7 +74,7 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    compliment = request.args.get("compliment")
 
     y = x
 
@@ -68,4 +94,4 @@ def greet_person():
 if __name__ == "__main__":
     # debug=True gives us error messages in the browser and also "reloads"
     # our web app if we change the code.
-    app.run(debug=False, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0")
